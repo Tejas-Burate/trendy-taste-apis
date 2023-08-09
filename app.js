@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const helmet = require('helmet');
+const cors = require('cors');
 const connectDb = require('./src/config/config');
 const roleRoutes = require('./src/routes/roleRoutes');
 const userRoutes = require('./src/routes/userRoutes');
@@ -22,6 +23,7 @@ connectDb();
 //Middlewares
 const app = express();
 app.use(express.json());
+app.use(cors());
 app.use(express.static('public'));
 app.use(helmet());
 app.use((req,res,next) =>{
@@ -33,6 +35,8 @@ app.use((req, res, next) => {
   req.timezone = timezone;
   next();
 });
+
+
 
 // Routes
 app.use('/roles',roleRoutes);
