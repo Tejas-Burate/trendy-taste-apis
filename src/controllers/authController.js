@@ -25,7 +25,7 @@ const loginUser = asyncHandler(async (req, res) => {
       
         //   res.status(200).json({ accessToken });
         //   return;
-      res.status(200).json({ status: 200, error: 'success', message: "User Login Successfully", 'accessToken': accessToken });
+      res.status(200).json({ status: 200, error: 'success', message: "User Login Successfully", 'accessToken': accessToken , data : user});
     } else {
       res.status(400).json({ status: 400, error: 'Validation Error', message: 'Invalid email or password' });
     }
