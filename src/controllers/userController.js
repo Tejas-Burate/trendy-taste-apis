@@ -236,6 +236,24 @@ const editAdminByUserId = asyncHandler(async(req,res) => {
   }
 })
 
+//Get All Admins RoleId-2
+
+const getAdmin = asyncHandler(async (req, res) => {
+  try {
+    const admin = await User.find({ roleId: 2 });
+    console.log('admin', admin);
+
+    if (admin.length === 0) {
+      return res.status(404).json({ status: 404, error: "404", message: "Admin not found" });
+    }
+
+    res.status(200).json(admin);
+  } catch (error) {
+    res.status(500).json({ status: 500, error: '500', message: 'Internal Server Error' });
+  }
+});
+
+
 //Get All Users
   const getAllUsers = asyncHandler(async (req, res) => {
     try {
@@ -460,6 +478,7 @@ module.exports = {
         editRestaurantManagerByUserId,
         editAdminByUserId,
         getAllUsers,
+        getAdmin,
         uploadProfileImg,
         upload,
         updateProfile,

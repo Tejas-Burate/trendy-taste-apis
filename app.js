@@ -12,6 +12,7 @@ const categoryRoutes = require('./src/routes/categoryRoute');
 const productRoutes = require('./src/routes/productRoutes');
 const orderRoutes = require('./src/routes/orderRoutes');
 const campusRoutes  = require('./src/routes/campusRoutes');
+const cartRoutes = require('./src/routes/cartRoutes');
 
 
 // Load environment variables from .env file
@@ -47,6 +48,7 @@ app.use('/category',categoryRoutes);
 app.use('/product',productRoutes);
 app.use('/order',orderRoutes);
 app.use('/campus', campusRoutes);
+app.use('/cart',cartRoutes);
 
 // Start the server
 const port = process.env.PORT || 3000;

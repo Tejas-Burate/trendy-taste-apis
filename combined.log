@@ -724,3 +724,7 @@
 {"level":"info","message":"POST /auth/login ::1 localhost Wed Aug 09 2023 14:27:17 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-09T08:57:17.016Z"}
 {"level":"info","message":"POST /auth/login ::1 localhost Wed Aug 09 2023 16:16:03 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-09T10:46:03.055Z"}
 {"level":"info","message":"POST /auth/login ::1 localhost Wed Aug 09 2023 16:17:14 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-09T10:47:14.373Z"}
+{"level":"info","message":"POST /users/createUser ::1 localhost Thu Aug 10 2023 10:43:10 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-10T05:13:10.555Z"}
+{"level":"info","message":"POST /users/createUser ::1 localhost Thu Aug 10 2023 10:43:32 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-10T05:13:32.575Z"}
+{"level":"info","message":"GET /users/getAllUsers ::1 localhost Thu Aug 10 2023 10:45:39 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-10T05:15:39.290Z"}
+{"level":"info","message":"GET /users/getAdmin ::1 localhost Thu Aug 10 2023 10:53:51 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-10T05:23:51.811Z"}

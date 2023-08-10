@@ -9,6 +9,7 @@ const {
     createRestaurantManager,
     createAdmin,
     getAllUsers,
+    getAdmin,
     editRestaurantManagerByUserId,
     editAdminByUserId,
     uploadProfileImg,
@@ -27,6 +28,7 @@ router.post('/createAdmin',createAdmin);
 router.put('/editRestaurantManagerByUserId/:id',editRestaurantManagerByUserId);
 router.put('/editAdminByUserId/:id',editAdminByUserId);
 router.get('/getAllUsers',getAllUsers);
+router.get('/getAdmin',getAdmin);
 router.post('/getUserDataTable',getUserDataTable);
 router.post('/uploadProfileImg',upload.single('profileImg'),uploadProfileImg);
 router.put('/updateProfile/:id',updateProfile)
