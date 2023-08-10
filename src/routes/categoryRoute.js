@@ -5,6 +5,7 @@ const {
     getCategoryById,
     editCategoryByCategoryId,
     deleteCategory,
+    getCategoryByRestaurantManagerId,
     getDataTableForCategoryByRestaurantId,
     getCategoryByRestaurantId} = require('../controllers/categoryController');
 
@@ -14,6 +15,7 @@ router.post('/createCategory', createCategory);
 router.get('/getAllCategory',getAllCategory);
 router.get('/getCategoryById/:id',getCategoryById);
 router.get('/getCategoryByRestaurantId/:id',getCategoryByRestaurantId);
+router.get('/getCategoryByRestaurantManagerId/:id',getCategoryByRestaurantManagerId);
 router.put('/editCategoryByCategoryId/:id',editCategoryByCategoryId);
 router.post('/getDataTableForCategoryByRestaurantId/:id',getDataTableForCategoryByRestaurantId);
 router.delete('/deleteCategory/:id',deleteCategory);

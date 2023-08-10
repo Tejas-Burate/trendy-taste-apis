@@ -1,4 +1,6 @@
 const { Schema, model } = require("mongoose");
+const Restaurant = require('./restaurantModel');
+const User = require('./userModel');
 
 const categorySchema = new Schema(
     {
@@ -20,8 +22,29 @@ const categorySchema = new Schema(
 
         restaurantId: {
             type: Schema.Types.ObjectId,
-            required: [true, "Category Description is required"],
+            required: [true, "Restaurant Id is required"],
             ref: 'restaurants',
+            validate: {
+                async validator(restaurantId) {
+                    const restaurant = await Restaurant.findOne({ _id: restaurantId });
+                    console.log('restaurant', restaurant);
+                    return restaurant !== null;
+                },
+                message: "Invalid restaurantId. restaurantId does not exist in the 'Restaurant' collection.",
+            },
+        },
+
+        restaurantManagerId: {
+            type: String,
+            ref: 'users',
+            validate: {
+                async validator(restaurantManagerId) {
+                    const restaurantManager = await User.findOne({ _id: restaurantManagerId });
+                    console.log('restaurantManagerId', restaurantManager);
+                    return restaurantManager !== null;
+                },
+                message: "Invalid restaurantManagerId. restaurantManagerId does not exist in the 'Users' collection.",
+            },
         }
     },
     {

@@ -1,11 +1,12 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const Category = require('../models/categoryModel');
+const User = require('../models/userModel');
 const Restaurant = require('../models/restaurantModel');
 
 //Create Category
 const createCategory = asyncHandler(async(req,res) =>{
-    const {categoryName, categoryImg, description, restaurantId} = req.body;
+    const {categoryName, categoryImg, description, restaurantId, restaurantManagerId} = req.body;
 
     try{
     const category = await Category.create({
@@ -13,6 +14,7 @@ const createCategory = asyncHandler(async(req,res) =>{
         categoryImg,
         description,
         restaurantId,
+        restaurantManagerId
     })
 
     res.status(201).json({status:201, error:"success",message:"Category created successfully"});
@@ -88,6 +90,28 @@ const getCategoryByRestaurantId = asyncHandler(async(req,res) => {
         res.status(500).json({status:500, error: "500", message:"Internal Server Error"});
     }
     
+})
+
+
+// Get Category By RestaurantManagerId
+
+const getCategoryByRestaurantManagerId = asyncHandler(async(req,res) => {
+  try {
+      const restaurantManager = await User.findOne({_id : req.params.id});
+  if(!restaurantManager){
+      res.status(404).json({status:404, error: "404", message: " Given Restauarnt Manager Id is not found"});
+  }
+
+  const category = await Category.find({restaurantManagerId : req.params.id});
+  if(category.length === 0){
+      res.status(404).json({status:404, error: "404", message: " Category of Given RestaurantManager Id is not found"});
+  }
+  res.status(200).json(category);
+  } catch (error) {
+      console.log('error', error)
+      res.status(500).json({status:500, error: "500", message:"Internal Server Error"});
+  }
+  
 })
 
 //Update Category
@@ -212,4 +236,5 @@ module.exports = {
     editCategoryByCategoryId,
     deleteCategory,
     getDataTableForCategoryByRestaurantId,
+    getCategoryByRestaurantManagerId,
     getCategoryByRestaurantId}

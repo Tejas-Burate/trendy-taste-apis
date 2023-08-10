@@ -7,13 +7,15 @@ const Restaurant = require('../models/restaurantModel');
 
 //Create Product
 const createProduct = asyncHandler(async(req,res) => {
-    const { productName, productImg, price, restaurantId, categoryId } = req.body;
+    const { productName, productImg, price, status, description, restaurantId, categoryId } = req.body;
     
     try {
         const product = await Product.create({
             productName,
             productImg,
             price,
+            status, 
+            description,
             restaurantId,
             categoryId,
         })

@@ -62,7 +62,7 @@ const createUser = asyncHandler(async (req, res) => {
       mobile,
       profileImg,
       otp,
-      roleId,
+      roleId : 0,
       createdBy
     });
 
