@@ -29,7 +29,6 @@ const logger = require('../middlewares/winstonLogger');
       console.log(req.file);
       res.status(400).json({status:400, error: '400', message: 'No file uploaded'});
     } else {
-      console.log('in if condition');
       // const imageUrl = `${req.protocol}://${req.get('host')}/images/profile/${req.file.filename}`;
       const imageUrl = `https://trendy-taste-a7jv.onrender.com/images/profile/${req.file.filename}`;
       res.status(200).json({status:200,error:'success',message:'imageUrl created', imageUrl });
@@ -49,7 +48,7 @@ function generateOTP() {
 const createUser = asyncHandler(async (req, res) => {
   try {
     const otp = generateOTP();
-    const { fullName, email, password, mobile, profileImg, roleId, createdBy } = req.body;
+    const { fullName, email, password, mobile, roleId, profileImg, createdBy } = req.body;
     let hashedPassword = null;
 
     if (password) {
@@ -69,6 +68,8 @@ const createUser = asyncHandler(async (req, res) => {
 
     res.status(201).json({ status: 201, error: "success", message: "User created successfully" });
   } catch (error) {
+    console.log('error', error);
+
     if (error.name === 'ValidationError') {
       // Mongoose validation error
       const validationErrors = Object.values(error.errors).map(err => err.message);

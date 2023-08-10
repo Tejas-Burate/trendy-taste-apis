@@ -732,3 +732,13 @@
 {"level":"info","message":"POST /users/uploadProfileImg ::1 localhost Thu Aug 10 2023 11:13:30 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-10T05:43:30.486Z"}
 {"level":"info","message":"POST /users/uploadProfileImg ::1 localhost Thu Aug 10 2023 11:15:53 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-10T05:45:53.922Z"}
 {"level":"info","message":"GET /users/getRestaurantManager ::1 localhost Thu Aug 10 2023 12:06:27 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-10T06:36:27.481Z"}
+{"level":"info","message":"POST /users/uploadProfileImg ::1 localhost Thu Aug 10 2023 14:43:33 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-10T09:13:33.585Z"}
+{"level":"info","message":"POST /users/createRestaurantManager ::1 localhost Thu Aug 10 2023 14:48:24 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-10T09:18:24.681Z"}
+{"level":"info","message":"POST /users/createRestaurantManager ::1 localhost Thu Aug 10 2023 14:50:38 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-10T09:20:38.968Z"}
+{"level":"info","message":"GET /users/getRestaurantManager ::1 localhost Thu Aug 10 2023 14:51:09 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-10T09:21:09.255Z"}
+{"level":"info","message":"GET /users/getRestaurantManager ::1 localhost Thu Aug 10 2023 14:54:36 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-10T09:24:36.437Z"}
+{"level":"info","message":"POST /users/uploadProfileImg ::1 localhost Thu Aug 10 2023 14:58:58 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-10T09:28:58.809Z"}
+{"level":"info","message":"PUT /users/editRestaurantManagerByUserId/64d4abe711924c1442a07d99 ::1 localhost Thu Aug 10 2023 15:04:53 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-10T09:34:53.643Z"}
+{"level":"info","message":"POST /users/createUser ::1 localhost Thu Aug 10 2023 15:07:18 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-10T09:37:18.069Z"}
+{"level":"info","message":"POST /users/createUser ::1 localhost Thu Aug 10 2023 15:07:59 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-10T09:37:59.493Z"}
+{"level":"info","message":"POST /users/createUser ::1 localhost Thu Aug 10 2023 15:09:12 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-10T09:39:12.703Z"}
