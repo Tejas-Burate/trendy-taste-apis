@@ -30,7 +30,8 @@ const logger = require('../middlewares/winstonLogger');
       res.status(400).json({status:400, error: '400', message: 'No file uploaded'});
     } else {
       console.log('in if condition');
-      const imageUrl = `${req.protocol}://${req.get('host')}/images/profile/${req.file.filename}`;
+      // const imageUrl = `${req.protocol}://${req.get('host')}/images/profile/${req.file.filename}`;
+      const imageUrl = `https://trendy-taste-a7jv.onrender.com/images/profile/${req.file.filename}`;
       res.status(200).json({status:200,error:'success',message:'imageUrl created', imageUrl });
     }
   };
@@ -236,8 +237,27 @@ const editAdminByUserId = asyncHandler(async(req,res) => {
   }
 })
 
-//Get All Admins RoleId-2
 
+
+//Get All Restaurant Manager 
+
+const getRestaurantManager = asyncHandler(async (req, res) => {
+  try {
+    const restaurantManager = await User.find({ roleId: 1 });
+    console.log('restaurantManager', restaurantManager);
+
+    if (restaurantManager.length === 0) {
+      return res.status(404).json({ status: 404, error: "404", message: "Restaurant Manager not found" });
+    }
+
+    res.status(200).json(restaurantManager);
+  } catch (error) {
+    res.status(500).json({ status: 500, error: '500', message: 'Internal Server Error' });
+  }
+});
+
+
+//Get All Admins RoleId-1
 const getAdmin = asyncHandler(async (req, res) => {
   try {
     const admin = await User.find({ roleId: 2 });
@@ -254,10 +274,11 @@ const getAdmin = asyncHandler(async (req, res) => {
 });
 
 
+
 //Get All Users
   const getAllUsers = asyncHandler(async (req, res) => {
     try {
-      const users = await User.find();
+      const users = await User.find({roleId : 0});
       console.log(users);
   
       if (users.length === 0) {
@@ -479,6 +500,7 @@ module.exports = {
         editAdminByUserId,
         getAllUsers,
         getAdmin,
+        getRestaurantManager,
         uploadProfileImg,
         upload,
         updateProfile,
