@@ -2,6 +2,7 @@ const { Schema, model } = require("mongoose");
 const User = require('./userModel');
 const Restaurant = require('./restaurantModel');
 const Product = require('./productModel');
+const Category = require('./categoryModel');
 
 const orderSchema = new Schema(
     {
@@ -19,21 +20,21 @@ const orderSchema = new Schema(
             },
         },
 
-        restaurantId: {
-            type: Schema.Types.ObjectId,
-            ref: 'restaurant',
-            validate: {
-                // Custom validator to check if the referenced roleId exists in the "Roles" collection
-                async validator(restaurantId) {
-                    const restaurant = await Restaurant.findOne({ _id : restaurantId });
-                    console.log('restaurantId', restaurantId)
-                    console.log('restaurant', restaurant)
+        // restaurantId: {
+        //     type: Schema.Types.ObjectId,
+        //     ref: 'restaurant',
+        //     validate: {
+        //         // Custom validator to check if the referenced roleId exists in the "Roles" collection
+        //         async validator(restaurantId) {
+        //             const restaurant = await Restaurant.findOne({ _id : restaurantId });
+        //             console.log('restaurantId', restaurantId)
+        //             console.log('restaurant', restaurant)
 
-                    return restaurant !== null; // Return true if the role exists, false otherwise
-                },
-                message: "Invalid restaurantId. Restaurant does not exist in the 'Restaurant' collection.",
-            },
-        },
+        //             return restaurant !== null; // Return true if the role exists, false otherwise
+        //         },
+        //         message: "Invalid restaurantId. Restaurant does not exist in the 'Restaurant' collection.",
+        //     },
+        // },
 
         products: [
             {
@@ -43,6 +44,7 @@ const orderSchema = new Schema(
                     validate: {
                         // Custom validator to check if the referenced roleId exists in the "Roles" collection
                         async validator(productId) {
+                            console.log('productId =: ', productId);
                             const product = await Product.findOne({ _id : productId });
                            
         
@@ -59,21 +61,98 @@ const orderSchema = new Schema(
                     type: Number,
                     required: true,
                 },
-                unit_price: {
+                price: {
                     type: Number,
                     required: true,
                 },
-                total_price: {
-                    type: Number,
+                description: {
+                    type: String,
                     required: true,
                 },
+
+                status: {
+                    type: String,
+                    required: true,
+                },
+
+                categoryId: {
+                    type: Schema.Types.ObjectId,
+                    ref: 'categories',
+                    validate: {
+                        // Custom validator to check if the referenced roleId exists in the "Roles" collection
+                        async validator(categoryId) {
+                            const category = await Category.findOne({ _id :categoryId });
+                            console.log('categoryer', category)
+                            return category !== null; // Return true if the role exists, false otherwise
+                        },
+                        message: "Invalid categoryId. CategoryId does not exist in the 'Product' collection.",
+                    },
+                },
+
             }
         ], 
 
-        orderDate: {
-            type: Date,
-            default: Date.now,
-        }
+        totalAmount : {
+            type: Number,
+            // required: [true, "Total Amount is required"],
+        },
+
+        currency : {
+            type: String,
+            // required: [true, "String is required"],
+        },
+
+        remainingAmount : {
+            type: Number,
+            // required: [false, "Remaining Amount is required"],
+            default: null,
+        },
+
+        orderStatus : {
+            type: String,
+            // required: [false, "orderStatus is required"],
+            default: "Pending",
+        },
+
+        paidAmount : {
+            type: Number,
+            // required: [false, "paidAmount is required"],
+            default: null,
+        },
+
+        rPaymentId : {
+            type: String,
+            // required: [false, "rPaymentID is required"],
+            default: null,
+        },
+
+        rOrderId : {
+            type: String,
+            // required: [false, "OrderId is required"],
+            default: null,
+        },
+
+        rSignature : {
+            type: String,
+            // required: [false, "rSignature is required"],
+            default: null,
+        },
+
+        scheduleDate : {
+            type: String,
+            // required: [true, "scheduleDate is required"],
+        },
+
+        scheduleTime : {
+            type: String,
+            // required: [true, "scheduleTime is required"],
+        },
+
+
+        // orderDate: {
+        //     type: Date,
+        //     default: Date.now,
+        // }
     },
     {
         timestamps: true,

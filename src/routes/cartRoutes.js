@@ -1,9 +1,14 @@
 const express = require('express');
-const { addToCart, getCartById, removeFromCart } = require('../controllers/cartController');
+const { 
+    addToCart,
+    getCart, 
+    getCartByUserId, 
+    removeFromCart } = require('../controllers/cartController');
 
 const router = express.Router();
 
-router.get('/getCartById/:id', getCartById);
+router.get('/getCartByUserId/:id', getCartByUserId);
+router.get('/getCart', getCart);
 router.post('/addToCart', addToCart);
 router.post('/removeFromCart', removeFromCart);
 
