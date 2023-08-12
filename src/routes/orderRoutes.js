@@ -8,5 +8,5 @@ const router = express.Router();
 
 router.post('/placeOrder',placeOrder);
 router.get('/getAllOrders',getAllOrders);
-router.get('/getOrderByUserId/:id',getOrderByUserId);
+router.get('/getOrderByUserId',getOrderByUserId);
 module.exports = router;

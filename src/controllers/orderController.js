@@ -126,7 +126,9 @@ const getAllOrders = asyncHandler(async(req,res) => {
 
 const getOrderByUserId = asyncHandler(async(req,res) => {
     try {
-        const user = await User.findOne({_id : req.params.id});
+        const {userId} = req.body;
+
+        const user = await User.findOne({_id : userId});
         if(!user ){
             res.status(404).json({status:404, error: "404", message: "User of given Id is not found"});
             return;

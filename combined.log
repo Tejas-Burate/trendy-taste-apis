@@ -867,3 +867,10 @@
 {"level":"info","message":"POST /order/placeOrder ::1 localhost Fri Aug 11 2023 18:25:47 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-11T12:55:47.408Z"}
 {"level":"info","message":"POST /order/placeOrder ::1 localhost Fri Aug 11 2023 18:27:41 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-11T12:57:41.210Z"}
 {"level":"info","message":"POST /order/placeOrder ::1 localhost Fri Aug 11 2023 18:28:31 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-11T12:58:31.001Z"}
+{"level":"info","message":"POST /order/placeOrder ::1 localhost Fri Aug 11 2023 18:31:08 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-11T13:01:08.831Z"}
+{"level":"info","message":"GET /cart/getCart ::1 localhost Fri Aug 11 2023 18:33:43 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-11T13:03:43.592Z"}
+{"level":"info","message":"GET /users/getAllUsers ::1 localhost Sat Aug 12 2023 14:13:43 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-12T08:43:43.420Z"}
+{"level":"info","message":"GET /users/getAllUsers ::1 localhost Sat Aug 12 2023 14:21:35 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-12T08:51:35.894Z"}
+{"level":"info","message":"GET /users/getAllUsers ::1 localhost Sat Aug 12 2023 14:21:43 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-12T08:51:43.198Z"}
+{"level":"info","message":"GET /users/getAllUsers ::1 localhost Sat Aug 12 2023 14:25:36 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-12T08:55:36.388Z"}
+{"level":"info","message":"GET /order/getOrderByUserId ::1 localhost Sat Aug 12 2023 14:37:24 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-12T09:07:24.057Z"}
