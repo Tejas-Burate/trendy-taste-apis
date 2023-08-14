@@ -16,10 +16,10 @@ router = express.Router();
 
 router.post('/createRestaurant',createRestaurant);
 router.get('/getAllRestaurants',getAllRestaurants);
-router.get('/getRestaurantById/:id',getRestaurantById);
-router.get('/getRestaurantByCampusId/:id',getRestaurantByCampusId);
-router.get('/getRestaurantByUserId/:id',getRestaurantByUserId);
-router.put('/editRestaurantByRestaurantId/:id',editRestaurantByRestaurantId);
+router.get('/getRestaurantById',getRestaurantById);
+router.get('/getRestaurantByCampusId',getRestaurantByCampusId);
+router.get('/getRestaurantByUserId',getRestaurantByUserId);
+router.put('/editRestaurantByRestaurantId',editRestaurantByRestaurantId);
 router.post('/getDataTableForRestaurantBycampusId/:id',getDataTableForRestaurantBycampusId);
 router.delete('/deleteRestaurant/:id',validateAdmin,deleteRestaurant);
 router.post('/uploadRestaurantImg',upload.single('restaurantImg'),uploadRestaurantImg);

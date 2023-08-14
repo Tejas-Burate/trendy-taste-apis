@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const moment = require("moment-timezone");
 const Restaurant = require('../models/restaurantModel');
 const Campus = require('../models/campusModel');
 const User = require('../models/userModel');
@@ -58,13 +59,14 @@ const getAllRestaurants = asyncHandler(async(req,res) => {
 
 //Get Restaurant By Id
 const getRestaurantById = asyncHandler(async(req,res) => {
+  const { restaurantId } = req.body
     try {
-        if (!isValidObjectId(req.params.id)) {
+        if (!isValidObjectId(restaurantId)) {
             res.status(400).json({ status: 400, error: "Bad Request", message: "Invalid Restaurant Id" });
             return;
           }
 
-        const restaurant = await Restaurant.findById(req.params.id);
+        const restaurant = await Restaurant.findOne({_id : restaurantId});
         if(!restaurant){
             res.status(404).json({status:404, error: "400", message: "Restaurant of given Id is not found"});
             return;
@@ -72,6 +74,7 @@ const getRestaurantById = asyncHandler(async(req,res) => {
         res.status(200).json(restaurant);
         
     } catch (error) {
+      console.log('error', error);
         res.status(500).json({status:500, error: "500", message:"Internal Server Error"});
     }
 })
@@ -81,9 +84,9 @@ const getRestaurantById = asyncHandler(async(req,res) => {
 
 const getRestaurantByCampusId = asyncHandler(async (req, res) => {
     try {
-    //   const campusId = req.params.id;
+       const { campusId } = req.body;
       
-      if (!isValidObjectId(req.params.id)) {
+      if (!isValidObjectId(campusId)) {
         res.status(400).json({ status: 400, error: "Bad Request", message: "Invalid Campus Id" });
         return;
       }
@@ -113,16 +116,16 @@ const getRestaurantByCampusId = asyncHandler(async (req, res) => {
 
 
 //Get Restaurant By User Id
-
 const getRestaurantByUserId = asyncHandler(async (req, res) => {
     try {
+      const { userId } = req.body;
 
-        if (!isValidObjectId(req.params.id)) {
-            res.status(400).json({ status: 400, error: "Bad Request", message: "Invalid Campus Id" });
+        if (!isValidObjectId(userId)) {
+            res.status(400).json({ status: 400, error: "Bad Request", message: "Invalid User Id" });
             return;
           }
 
-      const user = await User.findOne({ _id: req.params.id });
+      const user = await User.findOne({ _id: userId });
       console.log('user', user);
   
       if (!user) {
@@ -130,7 +133,7 @@ const getRestaurantByUserId = asyncHandler(async (req, res) => {
         return;
       }
   
-      const restaurant = await Restaurant.find({ createdBy : req.params.id });
+      const restaurant = await Restaurant.find({ createdBy : userId });
       if (restaurant.length === 0) {
         res.status(404).json({ status: 404, error: "404", message: "Restaurant of given User Id is not found" });
         return;
@@ -147,17 +150,23 @@ const getRestaurantByUserId = asyncHandler(async (req, res) => {
 
 //update restaurant
 const editRestaurantByRestaurantId = asyncHandler(async(req,res) => {
-    const { restaurantName, location, restaurantImg } = req.body;
-    console.log(req.params.id);
+    const { restaurantId , restaurantName, location, restaurantImg } = req.body;
 
     try{
-        const restaurant = await Restaurant.findById(req.params.id); 
+        const restaurant = await Restaurant.findById(restaurantId); 
         console.log(restaurant);
         if(!restaurant){
             res.status(404).json({status:404, error: "404", message:"Restaurant of given ID is not found"})
         }else{
+
+          const timezone = process.env.TIMEZONE;
+  const currentDate = new Date();
+  const utcOffset = moment.tz(timezone).utcOffset();
+  currentDate.setUTCMinutes(currentDate.getUTCMinutes() + utcOffset);
+  req.body.updatedAt = currentDate;
+
         const restaurant = await Restaurant.findByIdAndUpdate(
-            req.params.id,
+          restaurantId,
             req.body,
             {new: true}
         );
@@ -165,6 +174,7 @@ const editRestaurantByRestaurantId = asyncHandler(async(req,res) => {
         res.status(200).json({status:200, error: "success", message:"Resaturant updated successfully", restaurant})
         }
     }catch(error){
+      console.log('error', error);
         res.status(500).json({ status: 500, error: '500', message: 'Internal Server Error' });
     }
 });

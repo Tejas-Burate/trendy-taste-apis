@@ -2,6 +2,7 @@ const express = require('express');
 // const mongoose = require('mongoose');
 const asyncHandler = require('express-async-handler');
 const Role = require('../models/roleModel');
+const moment = require("moment-timezone");
 
 const getAllRoles = asyncHandler(async (req, res) => {
     const role = await Role.find();
@@ -53,6 +54,13 @@ const updateRoleByRoleId = asyncHandler(async (req, res) => {
         res.status(404).json({ status: 404, error: '404', message: 'Role not found' });
       
     } else {
+
+        const timezone = process.env.TIMEZONE;
+  const currentDate = new Date();
+  const utcOffset = moment.tz(timezone).utcOffset();
+  currentDate.setUTCMinutes(currentDate.getUTCMinutes() + utcOffset);
+  req.body.updatedAt = currentDate;
+  
         const updatedRole = await Role.findByIdAndUpdate(
             role._id,
             { roleName }, 

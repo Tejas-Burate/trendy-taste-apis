@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const moment = require("moment-timezone");
 const User = require('../models/userModel');
 const asyncHandler = require('express-async-handler');
 const bcrypt = require("bcrypt");
@@ -183,21 +184,27 @@ const createRestaurantManager = asyncHandler(async (req, res) => {
 //Edit Restaurant Managaer By User Id(Admin Id)
 
 const editRestaurantManagerByUserId = asyncHandler(async(req,res) => {
-  const { fullName, email, password, mobile, profileImg } = req.body;
-  if (!isValidObjectId(req.params.id)) {
+  const { userId,fullName, email, password, mobile, profileImg } = req.body;
+  if (!isValidObjectId(userId)) {
     res.status(400).json({ status: 400, error: "400", message: "Invalid Admin Id" });
     return;
   }
 
   try{
-  const user = await User.findOne({createdBy : req.body.id});
+  const user = await User.findOne({createdBy : userId});
   console.log('user', user)
   if(!user){
     res.status(404).json({status:404, error: "404", message: "Given Admin Id is not found"});
     return;
   }
+  const timezone = process.env.TIMEZONE;
+  const currentDate = new Date();
+  const utcOffset = moment.tz(timezone).utcOffset();
+  currentDate.setUTCMinutes(currentDate.getUTCMinutes() + utcOffset);
+  req.body.updatedAt = currentDate;
+  
    const updateRestaurantManager = await User.findByIdAndUpdate(
-                           req.params.id,
+                           userId,
                            req.body,
                            {new: true}
                           );
@@ -212,21 +219,28 @@ const editRestaurantManagerByUserId = asyncHandler(async(req,res) => {
 
 //Edit Admin By User Id(Admin Id)
 const editAdminByUserId = asyncHandler(async(req,res) => {
-  const { fullName, email, password, mobile, profileImg } = req.body;
-  if (!isValidObjectId(req.params.id)) {
+  
+  const { userId, fullName, email, password, mobile, profileImg } = req.body;
+  if (!isValidObjectId(userId)) {
     res.status(400).json({ status: 400, error: "400", message: "Invalid Admin Id" });
     return;
   }
 
   try{
-  const user = await User.findOne({createdBy : req.body.id});
+  const user = await User.findOne({createdBy : userId});
   console.log('user', user)
   if(!user){
     res.status(404).json({status:404, error: "404", message: "Given Admin Id is not found"});
     return;
   }
+  const timezone = process.env.TIMEZONE;
+  const currentDate = new Date();
+  const utcOffset = moment.tz(timezone).utcOffset();
+  currentDate.setUTCMinutes(currentDate.getUTCMinutes() + utcOffset);
+  req.body.updatedAt = currentDate;
+
    const updateAdmin = await User.findByIdAndUpdate(
-                           req.params.id,
+                           userId,
                            req.body,
                            {new: true}
                           );

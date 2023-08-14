@@ -1,11 +1,11 @@
 const express = require('express');
+const validateToken = require('../middlewares/validateTokenHandler');
+const validateSuperAdmin = require('../middlewares/validateSuperAdmin')
 const {
     getAllRoles,
     createRole,
     updateRoleByRoleId
 } = require('../controllers/roleController');
-const validateToken = require('../middlewares/validateTokenHandler');
-const validateSuperAdmin = require('../middlewares/validateSuperAdmin')
 
 
 const router = express.Router();

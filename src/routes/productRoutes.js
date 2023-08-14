@@ -13,10 +13,10 @@ const {
 
     router.post('/createProduct', createProduct);
     router.get('/getAllProduct', getAllProduct);
-    router.get('/getProductById/:id',getProductById);
-    router.get('/getProductsByRestaurantId/:id',getProductsByRestaurantId);
+    router.get('/getProductById',getProductById);
+    router.get('/getProductsByRestaurantId',getProductsByRestaurantId);
     router.post('/getDataTableForProductByRestaurantId/:id',getDataTableForProductByRestaurantId);
-    router.put('/editProductByProductId/:id',editProductByProductId);
+    router.put('/editProductByProductId',editProductByProductId);
     router.delete('/deleteProduct/:id',deleteProduct);
     
 
