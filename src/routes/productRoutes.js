@@ -3,7 +3,9 @@ const {
     createProduct, 
     getAllProduct,
     getProductById,
-    getProductsByRestaurantId,
+    getProductByCategoryId,
+    uploadProductImg,
+    upload,
     getDataTableForProductByRestaurantId,
     editProductByProductId,
     deleteProduct} = require('../controllers/productController');
@@ -14,8 +16,9 @@ const {
     router.post('/createProduct', createProduct);
     router.get('/getAllProduct', getAllProduct);
     router.get('/getProductById',getProductById);
-    router.get('/getProductsByRestaurantId',getProductsByRestaurantId);
+    router.get('/getProductByCategoryId',getProductByCategoryId);
     router.post('/getDataTableForProductByRestaurantId/:id',getDataTableForProductByRestaurantId);
+    router.post('/uploadProductImg',upload.array('productImg'),uploadProductImg);
     router.put('/editProductByProductId',editProductByProductId);
     router.delete('/deleteProduct/:id',deleteProduct);
     

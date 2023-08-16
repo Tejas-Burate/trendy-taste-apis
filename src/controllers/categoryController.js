@@ -4,6 +4,38 @@ const Category = require("../models/categoryModel");
 const User = require("../models/userModel");
 const Restaurant = require("../models/restaurantModel");
 const moment = require("moment-timezone");
+const multer = require("multer");
+
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'public/images/category');
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
+    cb(null, `${file.fieldname}-${uniqueSuffix}-${file.originalname}`);
+  },
+});
+
+const upload = multer({ storage });
+
+const uploadCategoryImg = (req, res) => {
+  const files = req.files;
+  const image = [];
+  console.log("File : = ",files.length);
+
+  if (!files || files.length === 0) {
+    res.status(400).json({status:400, error: '400', message: 'No file uploaded'});
+  } else {
+    files.forEach(file => {
+      console.log("In a foreach loop",files);
+      const imageUrl = `${req.protocol}://${req.get('host')}/images/category/${file.filename}`; 
+      image.push(imageUrl) ;
+    });
+    res.status(200).json({status:200,error:'success',message:'imageUrl created', image});
+  }
+};
+
 
 //Create Category
 const createCategory = asyncHandler(async (req, res) => {
@@ -57,7 +89,6 @@ const createCategory = asyncHandler(async (req, res) => {
 });
 
 //Get All Categories
-
 const getAllCategory = asyncHandler(async (req, res) => {
   try {
     const category = await Category.find();
@@ -77,7 +108,6 @@ const getAllCategory = asyncHandler(async (req, res) => {
 });
 
 //Get Category By Id
-
 const getCategoryById = asyncHandler(async (req, res) => {
   try {
     const { categoryId } = req.body;
@@ -296,6 +326,8 @@ module.exports = {
   createCategory,
   getAllCategory,
   getCategoryById,
+  uploadCategoryImg,
+  upload,
   editCategoryByCategoryId,
   deleteCategory,
   getDataTableForCategoryByRestaurantId,

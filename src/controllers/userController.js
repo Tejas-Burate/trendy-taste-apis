@@ -25,14 +25,25 @@ const logger = require('../middlewares/winstonLogger');
   const upload = multer({ storage });
   
   const uploadProfileImg = (req, res) => {
-    console.log(req.file);
-    if (!req.file) {
-      console.log(req.file);
+    const files = req.files;
+    const image = [];
+    console.log("File : = ",files.length);
+    // console.log('File 0th', files[0]);
+    // console.log('File 1st', files[1]);
+
+
+    if (!files || files.length === 0) {
+      // console.log(req.file);
       res.status(400).json({status:400, error: '400', message: 'No file uploaded'});
     } else {
-      // const imageUrl = `${req.protocol}://${req.get('host')}/images/profile/${req.file.filename}`;
-      const imageUrl = `https://trendy-taste-a7jv.onrender.com/images/profile/${req.file.filename}`;
-      res.status(200).json({status:200,error:'success',message:'imageUrl created', imageUrl });
+      files.forEach(file => {
+        console.log("In a foreach loop",files);
+        const imageUrl = `${req.protocol}://${req.get('host')}/images/profile/${file.filename}`; 
+        image.push(imageUrl) 
+      });
+      // const imageUrl = `${req.protocol}://${req.get('host')}/images/profile/${req.files.filename}`;
+      // const imageUrl = `https://trendy-taste-a7jv.onrender.com/images/profile/${req.file.filename}`;
+      res.status(200).json({status:200,error:'success',message:'imageUrl created', image});
     }
   };
   

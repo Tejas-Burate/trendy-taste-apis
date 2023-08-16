@@ -7,7 +7,7 @@ const {
 
 const router = express.Router();
 
-router.get('/getCartByUserId/:id', getCartByUserId);
+router.get('/getCartByUserId', getCartByUserId);
 router.get('/getCart', getCart);
 router.post('/addToCart', addToCart);
 router.post('/removeFromCart', removeFromCart);

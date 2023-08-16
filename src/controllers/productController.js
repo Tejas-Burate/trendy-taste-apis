@@ -4,6 +4,43 @@ const asyncHandler = require("express-async-handler");
 const Product = require("../models/productModel");
 const Restaurant = require("../models/restaurantModel");
 const moment = require("moment-timezone");
+const multer = require("multer");
+
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'public/images/product');
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
+    cb(null, `${file.fieldname}-${uniqueSuffix}-${file.originalname}`);
+  },
+});
+
+const upload = multer({ storage });
+
+const uploadProductImg = (req, res) => {
+  const files = req.files;
+  const image = [];
+  console.log("File : = ",files.length);
+  // console.log('File 0th', files[0]);
+  // console.log('File 1st', files[1]);
+
+
+  if (!files || files.length === 0) {
+    // console.log(req.file);
+    res.status(400).json({status:400, error: '400', message: 'No file uploaded'});
+  } else {
+    files.forEach(file => {
+      console.log("In a foreach loop",files);
+      const imageUrl = `${req.protocol}://${req.get('host')}/images/product/${file.filename}`; 
+      image.push(imageUrl) 
+    });
+    // const imageUrl = `${req.protocol}://${req.get('host')}/images/profile/${req.files.filename}`;
+    // const imageUrl = `https://trendy-taste-a7jv.onrender.com/images/profile/${req.file.filename}`;
+    res.status(200).json({status:200,error:'success',message:'imageUrl created', image});
+  }
+};
 
 //Create Product
 const createProduct = asyncHandler(async (req, res) => {
@@ -108,36 +145,36 @@ const getProductById = asyncHandler(async (req, res) => {
 });
 
 //Get Product By Restaurant Id
-const getProductsByRestaurantId = asyncHandler(async (req, res) => {
-  const { restaurantId } = req.body;
+const getProductByCategoryId = asyncHandler(async (req, res) => {
+  const { categoryId } = req.body;
 
-  if (!isValidObjectId(restaurantId)) {
+  if (!isValidObjectId(categoryId)) {
     res
       .status(400)
       .json({ status: 400, error: "400", message: "Invalid Admin Id" });
     return;
   }
   try {
-    const restaurant = await Restaurant.findOne({ _id: restaurantId });
+    const restaurant = await Product.findOne({ categoryId: categoryId });
     if (!restaurant) {
       res
         .status(404)
         .json({
           status: 404,
           error: "404",
-          message: "Given Restaurant Id is not found",
+          message: "Given Category Id is not found",
         });
       return;
     }
 
-    const product = await Product.find({ restaurantId: restaurantId });
+    const product = await Product.find({ categoryId: categoryId });
     if (product.length === 0) {
       res
         .status(404)
         .json({
           status: 404,
           error: "404",
-          message: "Product of Given Restaurant Id is not found",
+          message: "Product of Given Category Id is not found",
         });
       return;
     }
@@ -291,9 +328,11 @@ function isValidObjectId(id) {
 module.exports = {
   createProduct,
   getAllProduct,
-  getProductsByRestaurantId,
+  getProductByCategoryId,
   getDataTableForProductByRestaurantId,
   editProductByProductId,
+  uploadProductImg,
+  upload,
   deleteProduct,
   getProductById,
 };
