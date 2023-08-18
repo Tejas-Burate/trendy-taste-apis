@@ -154,7 +154,7 @@ const getDropdownCampusByUserId = asyncHandler(async (req, res) => {
       return;
     }
 
-    const campus = await Campus.find({ createdBy: userId });
+    const campus = await Campus.find({ createdBy: userId },{campusName : 1});
     console.log("campus", campus);
 
     if (campus.length === 0) {
@@ -166,12 +166,7 @@ const getDropdownCampusByUserId = asyncHandler(async (req, res) => {
       return;
     }
 
-    const response = campus.map((campus) => ({
-      _id: campus._id,
-      campusName: campus.campusName,
-    }));
-
-    res.status(200).json(response);
+    res.status(200).json(campus);
   } catch (error) {
     console.log(error);
     res.status(500).json({
