@@ -50,7 +50,7 @@ const getAllRestaurants = asyncHandler(async(req,res) => {
     if(restaurant.length === 0){
         res.status(404).json({ status: 404, error: '404', message: 'Restaurant not found' });
     }else{
-        res.status(200).json({status:200, error:"success", message: "Successfully get all restaurants", restaurant})
+        res.status(200).json(restaurant);
     }
     }catch(error){
         res.status(500).json({ status: 500, error: '500', message: 'Internal Server Error' });
