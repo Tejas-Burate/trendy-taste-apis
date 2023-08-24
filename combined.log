@@ -1075,3 +1075,6 @@
 {"level":"info","message":"POST /product/createProduct ::1 localhost Mon Aug 21 2023 18:45:26 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-21T13:15:26.817Z"}
 {"level":"info","message":"GET /restaurant/getAllRestaurants ::1 localhost Wed Aug 23 2023 19:50:08 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-23T14:20:08.764Z"}
 {"level":"info","message":"POST /users/uploadProfileImg ::1 localhost Thu Aug 24 2023 11:39:20 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-24T06:09:20.672Z"}
+{"level":"info","message":"GET /users/getAllUsers ::1 localhost Thu Aug 24 2023 12:42:44 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-24T07:12:44.114Z"}
+{"level":"info","message":"POST /users/uploadProfileImg ::1 localhost Thu Aug 24 2023 12:43:47 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-24T07:13:47.192Z"}
+{"level":"info","message":"POST /users/uploadProfileImg ::1 localhost Thu Aug 24 2023 12:45:13 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-08-24T07:15:13.782Z"}
