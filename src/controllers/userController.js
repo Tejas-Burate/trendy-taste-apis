@@ -39,8 +39,7 @@ const logger = require('../middlewares/winstonLogger');
     } else {
       files.forEach(file => {
         console.log("In a foreach loop",files);
-        // const imageUrl = `${req.protocol}://${req.get('host')}/images/profile/${file.filename}`; 
-        const imageUrl = `https://trendy-taste-a7jv.onrender.com/images/profile/${req.file.filename}`;
+        const imageUrl = `${req.protocol}://${req.get('host')}/images/profile/${file.filename}`; 
         image.push(imageUrl) 
       });
       // const imageUrl = `${req.protocol}://${req.get('host')}/images/profile/${req.files.filename}`;
