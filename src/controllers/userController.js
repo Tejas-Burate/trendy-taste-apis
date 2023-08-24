@@ -14,8 +14,8 @@ const logger = require('../middlewares/winstonLogger');
 // Upload ProfileImg
  const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-      // cb(null, 'public/images/profile');
-      cb(null, 'https://github.com/Tejas-Burate/trendy-taste-apis/blob/f7b3d95ba342501ce2b5522e5bc8df451fc3fa3f/public/images/profile');
+      cb(null, 'public/images/profile');
+      // cb(null, 'https://github.com/Tejas-Burate/trendy-taste-apis/blob/f7b3d95ba342501ce2b5522e5bc8df451fc3fa3f/public/images/profile');
     },
     filename: (req, file, cb) => {
       const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
