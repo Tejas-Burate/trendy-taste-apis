@@ -136,7 +136,7 @@ const getOrderByUserId = asyncHandler(async(req,res) => {
 
         const order = await Order.find({userId : user._id});
         if(order.length === 0){
-            res.status(404).json({status:404, error: "404", message: "Order  of given userId is not found"});
+            res.status(404).json({status:404, error: "404", message: "Order of given userId is not found"});
             return;
         }
 
