@@ -11,7 +11,7 @@ const {
 const router = express.Router();
 
 router.get('/getAllRoles',getAllRoles);
-router.post('/createRole',validateToken,validateSuperAdmin,createRole);
+router.post('/createRole',createRole);
 router.put('/updateRoleByRoleId/:id',updateRoleByRoleId);
 module.exports = router;
 
