@@ -64,4 +64,4 @@ restaurantSchema.pre("save", function (next) {
   next();
 });
 
-module.exports = model("restaurant", restaurantSchema);
+module.exports = model("restaurantaa", restaurantSchema);

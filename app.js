@@ -13,6 +13,7 @@ const productRoutes = require('./src/routes/productRoutes');
 const orderRoutes = require('./src/routes/orderRoutes');
 const campusRoutes  = require('./src/routes/campusRoutes');
 const cartRoutes = require('./src/routes/cartRoutes');
+const bodyParser = require('body-parser');
 
 
 // Load environment variables from .env file
@@ -24,6 +25,7 @@ connectDb();
 //Middlewares
 const app = express();
 app.use(express.json());
+app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static('public'));
 app.use(helmet());
