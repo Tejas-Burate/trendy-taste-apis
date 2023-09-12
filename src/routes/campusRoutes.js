@@ -13,9 +13,9 @@ const router = express.Router();
 
 router.post("/createCampus", createCampus);
 router.get("/getAllCampus", getAllCampus);
-router.get("/getCampusByCampusId", getCampusByCampusId);
-router.get("/getCampusByUserId", getCampusByUserId);
-router.get("/getDropdownCampusByUserId", getDropdownCampusByUserId);
+router.post("/getCampusByCampusId", getCampusByCampusId);
+router.post("/getCampusByUserId", getCampusByUserId);
+router.post("/getDropdownCampusByUserId", getDropdownCampusByUserId);
 router.post("/getDataTableForCampusByuserId/:id",getDataTableForCampusByuserId
 );
 router.put("/editCampusByCampusId", editCampusByCampusId);

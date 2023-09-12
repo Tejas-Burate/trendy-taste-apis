@@ -1082,3 +1082,6 @@
 {"level":"info","message":"GET /users/getAllUsers ::1 localhost Thu Sep 07 2023 01:38:11 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-09-06T20:08:11.705Z"}
 {"level":"info","message":"GET /restaurant/getAllRestaurants ::1 localhost Thu Sep 07 2023 08:51:51 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-09-07T03:21:51.709Z"}
 {"level":"info","message":"GET /restaurant/getAllRestaurants ::1 localhost Thu Sep 07 2023 08:51:57 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-09-07T03:21:57.064Z"}
+{"level":"info","message":"POST /category/getCategoryById ::1 localhost Tue Sep 12 2023 11:48:24 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-09-12T06:18:24.252Z"}
+{"level":"info","message":"POST /restaurant/getRestaurantById ::1 localhost Tue Sep 12 2023 12:06:17 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-09-12T06:36:17.112Z"}
+{"level":"info","message":"POST /restaurant/getRestaurantById ::1 localhost Tue Sep 12 2023 12:06:54 GMT+0530 (India Standard Time) PostmanRuntime/7.32.3","timestamp":"2023-09-12T06:36:54.970Z"}
